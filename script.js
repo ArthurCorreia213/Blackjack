@@ -158,7 +158,7 @@ function mostrar(){
   
   document.getElementById('p2').innerHTML = `Cartas na mão do Dealer: ${cartasNaMaoDealerVisiveis}`
   document.getElementById('p3').innerHTML = `Valor da mão do Dealer: ${maoDealerVisivel.valor}`
-  document.getElementById('p4').innerHTML = '<button id="btn" onclick="comprarCarta(maoArray, cartasNaMao, maoJogador)">Comprar</button>' + '<button id="btn" style="margin-left: 10%; margin-right: 10%;" onclick="doubleDown()">Dobrar</button>' + '<button id="btn" onclick="parar()">Parar</button>'
+  document.getElementById('p4').innerHTML = '<button id="btn" onclick="comprarCarta(maoArray, cartasNaMao, maoJogador)">Comprar</button>' + '<button id="btn" style="margin-left: 10%; margin-right: 10%;" onclick="doubleDown()">Dobrar aposta</button>' + '<button id="btn" onclick="parar()">Parar</button>'
   document.getElementById('p5').innerHTML = ""
   document.getElementById('p6').innerHTML = ""
   
@@ -204,7 +204,7 @@ function checarEstadoDeJogo() {
 
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoDealer.valor > 21):
           document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
-          dinheiro.valor += aposta.valor*2
+          dinheiro.valor += aposta.valor
           break;
 
         case(maoJogador.valor <= 21 && maoDealer.valor > 21):
@@ -214,7 +214,7 @@ function checarEstadoDeJogo() {
         
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoJogador.valor > maoDealer.valor):
           document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
-          dinheiro.valor += aposta.valor*2
+          dinheiro.valor += aposta.valor
           break;
         
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoJogador.valor < maoDealer.valor):
@@ -222,8 +222,8 @@ function checarEstadoDeJogo() {
           break;
         
         case(maoJogador.valor <= 21 && maoDealer.valor < maoJogador.valor):
-          document.getElementById('p6').innerHTML = `Caso 10 Você ganhou. + ${aposta.valor}`
-          dinheiro.valor += aposta.valor*2
+          document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
+          dinheiro.valor += aposta.valor
           break;
         
         case(maoJogador.valor < 22 && maoJogador.valor < maoDealer.valor):
