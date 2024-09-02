@@ -55,7 +55,7 @@ function rndNum(min, max) {
 }
 
 function ace(arr, mao){
-  if(arr.includes("A11") && mao > 21){
+  if(arr.includes("A11") && mao.valor > 21){
     mao.valor -=10
     for(i = 0; i<= arr.length; i++){
       if(arr[i] == "A11"){
