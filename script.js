@@ -181,54 +181,54 @@ function checarEstadoDeJogo() {
     document.getElementById('p2').innerHTML = `Cartas na mão do Dealer: ${cartasNaMaoDealer}`
     switch(true){
         case(maoJogador.valor == maoDealer.valor):
-        document.getElementById('p6').innerHTML = "Empate\nSua dinheiro foi devolvida"
-        dinheiro.valor += aposta.valor
-        break;
+          document.getElementById('p6').innerHTML = "Empate\nSua dinheiro foi devolvida"
+          dinheiro.valor += aposta.valor
+          break;
         
         case(cartasNaMao.length == 2 && cartasNaMaoDealer.length == 2 && maoJogador.valor == 21):
-        document.getElementById('p6').innerHTML = `Blackjack!\nVocê ganhou. + ${aposta.valor*1.5}`
-        dinheiro.valor += aposta.valor*1.5
-        break;
+          document.getElementById('p6').innerHTML = `Blackjack!\nVocê ganhou. + ${aposta.valor*1.5}`
+          dinheiro.valor += aposta.valor*1.5
+          break;
         
         case(cartasNaMao.length == 2 && cartasNaMaoDealer.length == 2 && maoDealer.valor == 21):
-        document.getElementById('p6').innerHTML = `Blackjack\nVocê perdeu. - ${aposta.valor}`
-        break;
+          document.getElementById('p6').innerHTML = `Blackjack\nVocê perdeu. - ${aposta.valor}`
+          break;
         
         case(doubleDownEstado == 1 && maoJogador.valor > 21):
-        document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
-        break;
+          document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
+          break;
 
         case(maoJogador.valor > 21):
-        document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
-        break;
+          document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
+          break;
 
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoDealer.valor > 21):
-        document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
-        dinheiro.valor += aposta.valor*2
-        break;
+          document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
+          dinheiro.valor += aposta.valor*2
+          break;
 
         case(maoJogador.valor <= 21 && maoDealer.valor > 21):
-        document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
-        dinheiro.valor += aposta.valor
-        break;
+          document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
+          dinheiro.valor += aposta.valor
+          break;
         
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoJogador.valor > maoDealer.valor):
-        document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
-        dinheiro.valor += aposta.valor*2
-        break;
+          document.getElementById('p6').innerHTML = `Você ganhou. + ${aposta.valor}`
+          dinheiro.valor += aposta.valor*2
+          break;
         
         case(doubleDownEstado == 1 && maoJogador.valor <= 21 && maoJogador.valor < maoDealer.valor):
-        document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
-        break;
+          document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
+          break;
         
         case(maoJogador.valor <= 21 && maoDealer.valor < maoJogador.valor):
-        document.getElementById('p6').innerHTML = `Caso 10 Você ganhou. + ${aposta.valor}`
-        dinheiro.valor += aposta.valor*2
-        break;
+          document.getElementById('p6').innerHTML = `Caso 10 Você ganhou. + ${aposta.valor}`
+          dinheiro.valor += aposta.valor*2
+          break;
         
         case(maoJogador.valor < 22 && maoJogador.valor < maoDealer.valor):
-        document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
-        break;
+          document.getElementById('p6').innerHTML = `Você perdeu. - ${aposta.valor}`
+          break;
     }
     document.getElementById('p5').innerHTML = '<button id="btn" onclick="teste()">Reset</button>'
     document.getElementById('p4').innerHTML = ""
