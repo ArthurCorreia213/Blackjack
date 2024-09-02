@@ -1,50 +1,35 @@
 function reset(){
-    baralho = [
-  ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
-  ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
-  ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
-  ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"] 
-]
-
-fimDeJogo = 0
-doubleDownEstado = 0
-
-maoArray = []
-cartasNaMao = []
-
-maoDealerArray = []
-cartasNaMaoDealer = []
-cartasNaMaoDealerVisiveis = []
-    
-maoJogador.valor = 0;
-maoDealer.valor = 0 ;
-maoDealerVisivel.valor = 0 ;
-
-visivel = false
-    teste()
-  }
-
   baralho = [
   ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
   ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
   ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
   ["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"] 
+  ]
+
+  fimDeJogo = 0
+  doubleDownEstado = 0
+
+  maoArray = []
+  cartasNaMao = []
+
+  maoDealerArray = []
+  cartasNaMaoDealer = []
+  cartasNaMaoDealerVisiveis = []
+
+  maoJogador.valor = 0;
+  maoDealer.valor = 0 ;
+  maoDealerVisivel.valor = 0 ;
+
+  visivel = false
+  teste()
+}
+
+baralho = [
+["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
+["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
+["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"],
+["A", 2, 3, 4, 5, 6, 7, 8, 9, 0, "J", "Q", "K"] 
 ]
-
-function rndNum(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function ace(arr, mao){
-  if(arr.includes("A11") && mao > 21){
-    mao.valor -=10
-    for(i = 0; i<= arr.length; i++){
-      if(arr[i] == "A11"){
-        arr[i] = "A1"
-      }
-    }
-  }
-}
 
 fimDeJogo = 0
 doubleDownEstado = 0
@@ -65,58 +50,74 @@ let maoDealer = { valor: 0 };
 let maoDealerVisivel = { valor: 0 };
 let visivel = false
 
-function comprarCarta(arr, cartas, mao, isDealer=false) {
-if(fimDeJogo == 1) return
-  let naipe = rndNum(0, 4);
-  let carta = rndNum(0, 13);
-  let simbolos = ["♣️", "♠️", "♥️", "♦️"];
-  let cartaComprada = baralho[naipe].splice(carta, 1);
-  let adicionarValor = 0
+function rndNum(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
-  if (cartaComprada == "A") {
-    if (mao.valor + 11 > 21) {
-      adicionarValor += 1;
-      arr.push("A1");
-    } else {
-      adicionarValor += 11;
-      arr.push("A11");
+function ace(arr, mao){
+  if(arr.includes("A11") && mao > 21){
+    mao.valor -=10
+    for(i = 0; i<= arr.length; i++){
+      if(arr[i] == "A11"){
+        arr[i] = "A1"
+      }
     }
-  } else if (cartaComprada == 0) {
-    adicionarValor += 10;
-    arr.push(10);
-    cartaComprada = 10;
-  } else if (cartaComprada == "J") {
-    adicionarValor += 10;
-    arr.push("J");
-  } else if (cartaComprada == "Q") {
-    adicionarValor += 10;
-    arr.push("Q");
-  } else if (cartaComprada == "K") {
-    adicionarValor += 10;
-    arr.push("K");
-  } else {
-    adicionarValor += parseInt(cartaComprada);
-    arr.push(cartaComprada);
   }
-  
-  mao.valor += adicionarValor
-  if(visivel == false && isDealer == true){
-    visivel = true
-  }
-  else if(visivel == true && isDealer == true){
-    maoDealerVisivel.valor += adicionarValor
-  }
-  
-  let simboloCarta = simbolos[naipe];
-  cartas.push(cartaComprada + simboloCarta);
-  
-  ace(arr, mao);
-  
-  mostrar()
-  
-  if(mao.valor > 21){
-    fimDeJogo = 1
-    checarEstadoDeJogo()
+}
+
+
+function comprarCarta(arr, cartas, mao, isDealer=false) {
+  if(fimDeJogo == 1) return
+    let naipe = rndNum(0, 4);
+    let carta = rndNum(0, 13);
+    let simbolos = ["♣️", "♠️", "♥️", "♦️"];
+    let cartaComprada = baralho[naipe].splice(carta, 1);
+    let adicionarValor = 0
+
+    if (cartaComprada == "A") {
+      if (mao.valor + 11 > 21) {
+        adicionarValor += 1;
+        arr.push("A1");
+      } else {
+        adicionarValor += 11;
+        arr.push("A11");
+      }
+    } else if (cartaComprada == 0) {
+      adicionarValor += 10;
+      arr.push(10);
+      cartaComprada = 10;
+    } else if (cartaComprada == "J") {
+      adicionarValor += 10;
+      arr.push("J");
+    } else if (cartaComprada == "Q") {
+      adicionarValor += 10;
+      arr.push("Q");
+    } else if (cartaComprada == "K") {
+      adicionarValor += 10;
+      arr.push("K");
+    } else {
+      adicionarValor += parseInt(cartaComprada);
+      arr.push(cartaComprada);
+    }
+    
+    mao.valor += adicionarValor
+    if(visivel == false && isDealer == true){
+      visivel = true
+    }
+    else if(visivel == true && isDealer == true){
+      maoDealerVisivel.valor += adicionarValor
+    }
+    
+    let simboloCarta = simbolos[naipe];
+    cartas.push(cartaComprada + simboloCarta);
+    
+    ace(arr, mao);
+    
+    mostrar()
+    
+    if(mao.valor > 21){
+      fimDeJogo = 1
+      checarEstadoDeJogo()
   }
 }
 
